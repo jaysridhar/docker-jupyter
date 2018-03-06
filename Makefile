@@ -14,7 +14,7 @@ build: dclean
 	docker build --rm=true --force-rm=true -t $(IMAGE_NAME):latest .
 
 run:
-	-docker run --rm=true -p 80:80 -p 443:443 $(IMAGE_NAME):latest
+	-docker run --rm=true -p 80:80 -p 443:443 -v ~/server/docker/jupyter/src/notebooks:/home/aurora/notebooks $(IMAGE_NAME):latest
 
 stop:
 	if [[ $$(docker ps -f "ancestor=$(IMAGE_NAME)" -q | wc -l) -gt 0 ]]; then docker stop $$(docker ps -f "ancestor=$(IMAGE_NAME)" -q); fi
