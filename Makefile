@@ -8,9 +8,10 @@
 all:
 
 push-snapshot:
-	rsync --exclude=err --delete -avz $(ROOT_PATH) $(PUSH_TARGET)
+	rsync --exclude=err --exclude=notebooks --delete -avz $(ROOT_PATH) $(PUSH_TARGET)
 
 build: dclean
+	if [ ! -d notebooks ]; then mkdir -p notebooks; chmod a+rw notebooks; fi
 	docker build --rm=true --force-rm=true -t $(IMAGE_NAME):latest .
 
 run:

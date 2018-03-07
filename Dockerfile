@@ -16,4 +16,4 @@ COPY nginx/sites-available /etc/nginx/sites-available
 COPY .jupyter/jupyter_notebook_config.py /home/aurora/.jupyter/jupyter_notebook_config.py
 COPY etc/startup.sh /etc/startup.sh
 RUN chown -R aurora:aurora /home/aurora/.jupyter
-ENTRYPOINT ["/bin/bash", "-c", "/etc/startup.sh"]
+ENTRYPOINT ["/etc/startup.sh"]
